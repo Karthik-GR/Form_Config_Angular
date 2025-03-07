@@ -1,0 +1,42 @@
+.content {
+ padding-top: 63px;
+}
+.success-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    background-color: #f0f8ff; 
+  
+    .success-message {
+      text-align: center;
+      background: #fff;
+      padding: 20px;
+      border-radius: 10px;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  
+      h1 {
+        color: #4caf50; 
+        margin-bottom: 10px;
+      }
+  
+      p {
+        color: #555;
+        margin-bottom: 20px;
+      }
+  
+      button {
+        background-color: #4caf50;
+        color: #fff;
+        border: none;
+        padding: 10px 20px;
+        border-radius: 5px;
+        cursor: pointer;
+        transition: background-color 0.3s;
+  
+        &:hover {
+          background-color: #45a049;
+        }
+      }
+    }
+  }

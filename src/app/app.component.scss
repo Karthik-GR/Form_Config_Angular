@@ -1,0 +1,9 @@
+.body {
+    margin: 0;
+    height: 100%;
+}
+
+::ng-deep * { 
+    margin: 0;
+    padding: 0;
+}

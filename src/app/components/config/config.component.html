@@ -1,0 +1,43 @@
+<div class="register-body">
+    <h1 class="register-title">Form Configuration</h1>
+    <form class="form">
+      <div class="black-bg form-content">
+        <label>SHOW FIELD</label>
+        <label>REQUIRED FIELD</label>
+      </div>
+  
+      <div  #wrapper
+        kendoDragTargetContainer
+        kendoDropTargetContainer
+        dragTargetFilter=".form-body"
+        dropTargetFilter=".form-body"
+        dragTarget=".form-fields"
+        dropTarget=".form-fields"
+        [hint]="{ hintClass: 'rowHint' }"
+        [dragData]="dragData"
+        (onDrop)="onDrop($event)"
+      >
+        <div class="form-body" *ngFor="let field of fields; let i = index" [attr.data-index]="i">
+          <div class="form-fields">
+            <input type="checkbox" [(ngModel)]="field.show" name="{{ field.label }}" (change)="toggleRequired(field)">
+            <label class="label-container">{{ field.label }}</label>
+          </div>
+          <input type="checkbox" [(ngModel)]="field.required" [disabled]="!field.show" name="{{ field.label }}-required"> 
+        </div>
+      </div>
+
+      <!-- <div class="button-container">
+        <button class="submit-button" kendoButton type="button" (click)="saveChanges()" routerLink="/register">Save Changes</button>
+      </div> -->
+
+      <p class="error-check" *ngIf="!isAtLeastOneFieldChecked()">Please select at least one show field.</p>
+
+      <div class="button-container">
+        <button class="submit-button" kendoButton type="button" (click)="saveChanges()" 
+                [disabled]="!isAtLeastOneFieldChecked()" routerLink="/register">
+          Save Changes
+        </button>
+      </div>
+
+    </form>
+</div>
