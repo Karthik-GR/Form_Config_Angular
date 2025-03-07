@@ -80,5 +80,8 @@ export class RegisterComponent implements OnInit {
   //   return this.fields.filter(field => field.show && field.required).length;
   // }
   
+  isAnyFieldFilled(): boolean {
+    return Object.keys(this.registerForm.controls).some(key => this.registerForm.controls[key].value && this.registerForm.controls[key].value.trim() !== '');
+  }
   
 }
