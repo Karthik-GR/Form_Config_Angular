@@ -26,33 +26,11 @@
         </div>
       </div>
     </div>
-
-
-    <!-- <div class="submit-button" *ngIf="visibleFieldCount() > 0; else noRequiredFieldSelected">
-      <button kendoButton [disabled]="registerForm.invalid">Submit</button>
-    </div> -->
+    
     <div class="submit-button">
-      <!-- <button kendoButton [disabled]="registerForm.invalid">Submit</button> -->
       <button kendoButton [disabled]="!isAnyFieldFilled()">Submit</button>
     </div>
-    
-    <!-- <ng-template #noRequiredFieldSelected >
-      <p class="error-check">Please select at least one field.</p>
-    </ng-template> -->
 
-    <!-- <button kendoButton [disabled]="registerForm.invalid">Submit</button> -->
-
-    <!-- <div *ngIf="visibleFieldCount() === 0">
-      <p class="error-check">Please select at least one field.</p>
-    </div>
-
-    <div *ngIf="visibleFieldCount() > 0 && visibleRequiredCount() === 0">
-      <p class="error-check">Please select at least one required field.</p>
-    </div>
-
-    <div class="submit-button" *ngIf="visibleRequiredCount() > 0">
-      <button kendoButton [disabled]="registerForm.invalid">Submit</button>
-    </div> -->
 
   </form>
 </div>

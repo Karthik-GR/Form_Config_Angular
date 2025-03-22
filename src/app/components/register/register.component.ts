@@ -31,7 +31,6 @@ export class RegisterComponent implements OnInit {
           ? [ '', [ Validators.required, this.optionalPatternValidator(field.name) ] ]
           : [ '', this.optionalPatternValidator(field.name) ];
       }
-      // validation optional, like mobile/email, FOR FUTure 
     });
     this.registerForm = this.fb.group(group);
   }
@@ -46,10 +45,11 @@ export class RegisterComponent implements OnInit {
         const pattern = /^\+?[1-9][0-9]{7,14}$/;
         return pattern.test(control.value) ? null : { pattern: 'Invalid mobile number.' };
       } else if (name === 'email') {
-        const pattern = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
+        const pattern =     { name: 'email', label: 'Email', show: true, required: true },
+        $/;
         return pattern.test(control.value) ? null : { pattern: 'Invalid email format.' };
       } else if (name === 'name') {
-        const pattern1 = /^[A-Za-z][A-Za-z\s]*$/;
+        // const pattern1 = /^[A-Za-z][A-Za-z\s]*$/;
         const pattern2 = /^[A-Za-z\s]+$/;
         if (control.value.startsWith(' ')) {
           return { pattern: "First character cannot be a space." };
@@ -76,10 +76,6 @@ export class RegisterComponent implements OnInit {
     return this.fields.filter(field => field.show).length;
   }
 
-  // visibleRequiredCount(): number {
-  //   return this.fields.filter(field => field.show && field.required).length;
-  // }
-  
   isAnyFieldFilled(): boolean {
     return Object.keys(this.registerForm.controls).some(key => this.registerForm.controls[key].value && this.registerForm.controls[key].value.trim() !== '');
   }

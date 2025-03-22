@@ -16,6 +16,7 @@ export class ConfigComponent {
     this.fields = JSON.parse(JSON.stringify(this.formConfigService.getFields()));
     console.log('Loaded fields:', this.fields);
   }
+  
   getConfigService(getConfigService: any): string {
     throw new Error('Method not implemented.');
   }
@@ -27,6 +28,7 @@ export class ConfigComponent {
   }
 
   dragData = ({ dragTarget }: any) => {
+    // console.log(Number(dragTarget.getAttribute("data-index")));
     return Number(dragTarget.getAttribute("data-index"));
   };
 
