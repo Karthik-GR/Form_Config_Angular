@@ -1,4 +1,4 @@
-<div class="register-body">
+<!-- <div class="register-body">
   <h1 class="register-title">Member Registration</h1>
   <form [formGroup]="registerForm" class="form-body" (ngSubmit)="onSubmit()">
     <div *ngFor="let field of fields; let i = index">
@@ -32,5 +32,44 @@
     </div>
 
 
+  </form>
+</div> -->
+
+
+<div class="register-body">
+  <h1 class="register-title">Member Registration</h1>
+  <form [formGroup]="registerForm" class="form-body" (ngSubmit)="onSubmit()">
+    <ng-container *ngFor="let field of fields">
+      <div *ngIf="field.show">
+        <div class="label-container">
+          <label class="label">{{ field.label }}</label>
+          <span *ngIf="field.required" class="required-label">*</span>
+        </div>
+
+        <ng-container [ngSwitch]="field.inputField">
+          <ng-container *ngSwitchCase="'input'">
+            <input [type]="field.inputType" [formControlName]="field.name" [required]="field.required">
+          </ng-container>
+
+          <ng-container *ngSwitchCase="'textarea'">
+            <textarea [formControlName]="field.name" rows="4"></textarea>
+          </ng-container>
+        </ng-container>
+
+        <div *ngIf="registerForm.controls[field.name].invalid && registerForm.controls[field.name].touched" class="error-message">
+          <span *ngIf="registerForm.controls[field.name].errors?.['required']">
+            This field is required.
+          </span>
+          <span *ngIf="registerForm.controls[field.name].errors?.['pattern']">
+            {{ registerForm.controls[field.name].errors?.['pattern'] }}
+          </span>
+        </div>
+      </div>
+    </ng-container>
+    
+    <!-- <span *ngIf="!isAnyFieldFilled" class="error-message">Please fill out any one of the fields.</span> -->
+    <div class="submit-button">
+      <button kendoButton [disabled]="!isAnyFieldFilled()">Submit</button>
+    </div>
   </form>
 </div>
