@@ -45,8 +45,7 @@ export class RegisterComponent implements OnInit {
         const pattern = /^\+?[1-9][0-9]{7,14}$/;
         return pattern.test(control.value) ? null : { pattern: 'Invalid mobile number.' };
       } else if (name === 'email') {
-        const pattern =     { name: 'email', label: 'Email', show: true, required: true },
-        $/;
+        const pattern = /^[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$/;
         return pattern.test(control.value) ? null : { pattern: 'Invalid email format.' };
       } else if (name === 'name') {
         // const pattern1 = /^[A-Za-z][A-Za-z\s]*$/;

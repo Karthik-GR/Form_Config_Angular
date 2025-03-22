@@ -9,7 +9,7 @@ export class FormConfigService {
     { name: 'name', label: 'Name', show: true, required: true },
     { name: 'mobile', label: 'Mobile', show: true, required: true },
     { name: 'email', label: 'Email', show: true, required: true },
-
+    { name: 'address', label: 'Address', show: true, required: true },
   ];
 
   getFields() {
