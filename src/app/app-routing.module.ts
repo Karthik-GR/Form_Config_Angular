@@ -9,6 +9,12 @@ const routes: Routes = [
   { path: 'configure', component: ConfigComponent },
   { path: 'home', component: HomeComponent },
   { path: '', redirectTo: '/register', pathMatch: 'full' }
+
+  // {path:'header', component: HeaderComponent, children: [
+  //   {path:'', component: RegisterComponent},
+  //   {path:'config', component: ConfigComponent},
+  //   {path:'register', component: RegisterComponent} ]},
+  //   {path:'home', component: HomeComponent}
 ];
 
 @NgModule({
