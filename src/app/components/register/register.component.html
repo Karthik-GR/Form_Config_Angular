@@ -9,11 +9,11 @@
         </div>
 
         <ng-container [ngSwitch]="field.inputField">
-          <ng-container *ngSwitchCase="'input'">
+          <ng-container *ngSwitchCase="inputFieldType.Input">
             <input [type]="field.inputType" [formControlName]="field.name" [required]="field.required">
           </ng-container>
 
-          <ng-container *ngSwitchCase="'textarea'">
+          <ng-container *ngSwitchCase="inputFieldType.Textarea">
             <textarea [formControlName]="field.name" rows="4"></textarea>
           </ng-container>
         </ng-container>
@@ -29,7 +29,6 @@
       </div>
     </ng-container>
     
-    <!-- <span *ngIf="!isAnyFieldFilled" class="error-message">Please fill out any one of the fields.</span> -->
     <div class="submit-button">
       <button kendoButton [disabled]="!isAnyFieldFilled()">Submit</button>
     </div>

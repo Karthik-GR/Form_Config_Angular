@@ -1,6 +1,6 @@
-import { Component, OnInit} from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators, AbstractControl, ValidationErrors, ValidatorFn } from '@angular/forms';
-import { FormConfigService } from '../../services/form-config.service';
+import { FormConfigService, InputField } from '../../services/form-config.service';
 import { Router } from '@angular/router';
 
 @Component({
@@ -11,6 +11,8 @@ import { Router } from '@angular/router';
 export class RegisterComponent implements OnInit {
   fields: any[] = [];
   registerForm!: FormGroup;
+  // Expose the enum for use in the template
+  inputFieldType = InputField;
 
   constructor(
     private formConfigService: FormConfigService, 
@@ -35,7 +37,6 @@ export class RegisterComponent implements OnInit {
     this.registerForm = this.fb.group(group);
   }
 
-
   optionalPatternValidator(patternStr: string): ValidatorFn {
     return (control: AbstractControl): ValidationErrors | null => {
       if (!control.value) {
@@ -44,15 +45,13 @@ export class RegisterComponent implements OnInit {
       if (control.value.startsWith(' ')) {
         return { pattern: 'First character cannot be a space.' };
       }
-
       if (patternStr) {
-        const regex = new RegExp(patternStr) ;
+        const regex = new RegExp(patternStr);
         return regex.test(control.value) ? null : { pattern: 'Invalid format.' };
       }
       return null;
     };
   }
-
 
   onSubmit() {
     if (this.registerForm.valid) {
@@ -66,7 +65,7 @@ export class RegisterComponent implements OnInit {
   }
 
   isAnyFieldFilled(): boolean {
-    return Object.keys(this.registerForm.controls).some(key => this.registerForm.controls[key].value && this.registerForm.controls[key].value.trim() !== '');
+    return Object.keys(this.registerForm.controls)
+      .some(key => this.registerForm.controls[key].value && this.registerForm.controls[key].value.trim() !== '');
   }
-  
 }
